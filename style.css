@@ -2,8 +2,15 @@ body{
     height: 100vh;
     background-color: black;
     color: white;
-    font-family: fantasy;
+    font-family: serif;
 }
+
+.rye-regular {
+    font-family: "Rye", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
 
 .navBar {
     height: 50px;
@@ -53,11 +60,34 @@ body{
     opacity: 1;
 }
 
+.banner {
+    height: 500px;
+    width: 100%;
+    background-image: url(./img/hogwarts-dark-wallpaper.jpg);
+    background-size: contain ;
+    background-repeat: no-repeat;
+    background-position: center; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    
+}
+
+#slogan {
+    color: rgb(215, 199, 87);    
+    text-shadow: 1px 1px 2px white, 0 0 1em blue, 0 0 0.2em blue;    
+    font-family: "Rye", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40pt;
+   
+}
 
 #logo {
     height: 100%;
     margin-left: auto;
     margin-right: auto;
+    font-family: "Rye", serif;
 }
 
 
