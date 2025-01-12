@@ -91,6 +91,8 @@ function listStudents(students){
 
 }
 
+let total;
+
 async function loadAllStudents() {
     try {
         const newResponse = await axios.get("https://hp-api.onrender.com/api/characters");
@@ -98,6 +100,7 @@ async function loadAllStudents() {
         const students = await newResponse.data;
         console.log(students);   
         listStudents(students);
+        total = students.length;
     
         // students.forEach((student) => {
         //     // console.log(student.name);
@@ -132,51 +135,80 @@ async function houseStudents(house) {
 
 loadAllStudents();
 
-async function addCharacter () {
+const form = document.querySelector("form");
+
+async function addCharacter (event) {
+    event.preventDefault();
+    try {
+        const form = event.target;
+        const newsCharacter = {
+            // 0 Name <input type="text" /> <br />
+            // 1 Date of Birth <input type="text" /> <br />  
+            // 2 House <select name="house" id="">
+            //     <option value="Gryffindor">Gryffindor</option>
+            //     <option value="Ravenclaw">Ravenclaw</option>
+            //     <option value="Slytherin">Slytherin</option>
+            //     <option value="Hufflepuff">Hufflepuff</option>
+            // </select> <br>       
+            // 3 Species <input type="text" /> <br />
+            // 4 Gender <input type="text" /> <br />
+            // 5 Is alive <select name="alive" id="">
+            //     <option value="true">Yes</option>
+            //     <option value="false">No</option>
+            // </select> <br>
+            // 6 Photo <input type="text" /> <br />
+            // 7 Actor <input type="text" /> <br />
+
+                actor :  form[7].value,
+                alive :  form[5].value,
+                // alternate_actors :  [],
+                // alternate_names :  (4) ['The Boy Who Lived', 'The Chosen One', 'Undesirable No. 1', 'Potty'],
+                // ancestry :  "half-blood",
+                dateOfBirth :  form[1].value,
+                // eyeColour :  "green",
+                gender :  form[4].value,
+                // hairColour : "black",
+                // hogwartsStaff : false,
+                // hogwartsStudent :  true,
+                house :  form[2].value,
+                id :  ++total,
+                image :  form[6].value,
+                name :  form[0].value,
+                // patronus : "stag",
+                species :  form[3].value,
+                // wand :  {wood: 'holly', core: 'phoenix tail feather', length: 11},
+                // wizard :  true,
+                // yearOfBirth :  1980
+            
+            };
+    
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newsCharacter),
+        });
+    
+        if (!response.ok) {
+            throw 'Bad Request';
+        }
+    
+        const data = await response.json();
+    
+        alertUser('You Sucessfully Added New Character!');
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+function alertUser(message) {
+    const alertBox = document.querySelector('#alert');    
+    alertBox.textContent = message;  
+    setTimeout(() => {
+        alertBox.textContent = '';
+    }, 4000);
     
 }
 
-document.querySelector('form').addEventListener('submit', async (evt) => {
-    evt.preventDefault();
-    try {
-      const form = evt.target;
-      const newsArticle = {
-        title: form[0].value,
-        date: form[1].value,
-        category: form[2].value,
-        content: form[3].value,
-        image: form[4].value,
-      };
-  
-      const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newsArticle),
-      });
-  
-      if (!res.ok) {
-        throw 'Bad Request';
-      }
-  
-      const data = await res.json();
-  
-      alertUser('Post Sucessfully Created!');
-    } catch (err) {
-      console.log(err);
-    }
-  });
-  
-  function alertUser(message) {
-    const alertBox = document.querySelector('#alert');
-    alertBox.textContent = message;
-  
-    setTimeout(() => {
-      alertBox.textContent = '';
-    }, 4000);
-  }
-
-fetch('https://jsonplaceholder.typicode.com/posts/1')
-  .then((response) => response.json())
-  .then((json) => console.log(json));
+form.addEventListener("submit", addCharacter);

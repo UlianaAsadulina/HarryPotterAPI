@@ -34,15 +34,53 @@
                 </ul> 
                 <div class="oneCharacter"></div>
             </div>
-            <div>Heres lays some news</div>
+            <div>
+                <h3>Add missing Character</h3>
+            </div>
 
             <form action="">
-                Title <input type="text" /> <br />
-                Date <input type="text" /> <br />
-                Category <input type="text" /> <br />
-                Content <input type="text" /> <br />
-                Image <input type="text" /> <br />
-                <input type="submit" value="Create" />
+
+<!-- 
+                let student = {
+                    actor :  "Daniel Radcliffe",
+                    alive :  true,
+                    alternate_actors :  [],
+                    alternate_names :  (4) ['The Boy Who Lived', 'The Chosen One', 'Undesirable No. 1', 'Potty'],
+                    ancestry :  "half-blood",
+                    dateOfBirth :  "31-07-1980",
+                    eyeColour :  "green",
+                    gender :  "male",
+                    hairColour : "black",
+                    hogwartsStaff : false,
+                    hogwartsStudent :  true,
+                    house :  "Gryffindor",
+                    id :  "9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8",
+                    image :  "https://ik.imagekit.io/hpapi/harry.jpg",
+                    name :  "Harry Potter",
+                    patronus : "stag",
+                    species :  "human",
+                    wand :  {wood: 'holly', core: 'phoenix tail feather', length: 11},
+                    wizard :  true,
+                    yearOfBirth :  1980
+                    }
+                     -->
+                Name <input type="text" /> <br />
+                Date of Birth <input type="text" /> <br />  
+                House <select name="house" id="">
+                    <option value="Gryffindor">Gryffindor</option>
+                    <option value="Ravenclaw">Ravenclaw</option>
+                    <option value="Slytherin">Slytherin</option>
+                    <option value="Hufflepuff">Hufflepuff</option>
+                </select> <br>       
+                Species <input type="text" /> <br />
+                Gender <input type="text" /> <br />
+                Is alive <select name="alive" id="">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select> <br>
+                Photo <input type="text" /> <br />
+                Actor <input type="text" /> <br />
+                <input type="submit" value="Add Character" />
             </form>
             <div id="alert"></div>
            
