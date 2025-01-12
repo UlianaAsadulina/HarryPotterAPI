@@ -16,6 +16,14 @@
 
         <!-- Axios -->
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <!-- Our Scripts -->
+        <script defer type="module" src="app.js"></script>
+        <script defer type="module" src="spells.js"></script>
+        <script defer type="module" src="book.js"></script>
+        <script defer type="module" src="characters.js"></script>
+
+
     </head>
     <body>
         <div class="mainContainer">
@@ -33,8 +41,8 @@
                 <h1 id="slogan" >Explore Wizards' World</h1>
             </div>
             <input type="text" id="inputSearch" placeholder="search...">
-            <button id="searchBtn">Find Spell</button>
-            <button id="random" onclick="randomSpell()">Get Random Spell</button>
+            <button id="searchBtn" >Find Spell</button>
+            <button id="random" >Get Random Spell</button>
 
             <div class="sortHat">
                 <img src="/img/Hogwarts-house.jpg" alt="">
@@ -63,6 +71,7 @@
                     <div class="houseInfo"></div>
                     <div class="flag"></div>
                     <div class="listCharacters"></div>
+
                 </div>
 
 

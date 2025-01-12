@@ -1,14 +1,12 @@
+import { findSpell, randomSpell } from './spells.js';
+
 const forSearch = document.getElementById('inputSearch');
 const searchButton = document.getElementById('searchBtn');
 const text = document.querySelector('.text');
 
-function search() {
-    //add
-}
 
-searchButton.addEventListener('click', search);
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
     baseURL: "https://potterapi-fedeperin.vercel.app/en",
     headers: {
         'Content-Type': 'application/json',
@@ -24,10 +22,10 @@ async function initialLoad() {
 
         //"routes": ["/en/books", "/en/characters", "/en/houses", "/en/spells"],
         
-        const response = await axiosInstance.get("/spells", { params: { search: "Levi" } });
+        // const response = await axiosInstance.get("/spells", { params: { search: "Levi" } });
 
-        const spells = await response.data;
-        console.log(spells);
+        // const spells = await response.data;
+        // console.log(spells);
         
 
         /**Spell Object
@@ -102,7 +100,7 @@ async function initialLoad() {
     }
 }
   
-initialLoad();
+//initialLoad();
 
 const flag = document.querySelector(".flag");
 const houseInfo = document.querySelector(".houseInfo");
@@ -183,16 +181,49 @@ async function getHouseInfo(houseID) {
 
 }
 
-async function randomSpell() {
-    try {
-        const response = await axiosInstance.get("/spells/random");
+// async function randomSpell() {
+//     try {
+//         const response = await axiosInstance.get("/spells/random");
 
-        const spell = await response.data;
-        console.log(spell);
-        alert(`Spell "${spell.spell}"\n${spell.use}`);
+//         const spell = await response.data;
+//         console.log(spell);
+//         alert(`Spell "${spell.spell}"\n${spell.use}`);
 
-    } catch (err) {
-        console.log(err);
-    }
+//     } catch (err) {
+//         console.log(err);
+//     }
     
-}
+// }
+
+// async function findSpell() {
+//     try {
+//         const search = document.getElementById("inputSearch").value;
+//         console.log(search);
+
+//         const response = await axiosInstance.get("/spells", { 
+//             params: { 
+//                 search: search 
+//             } 
+//         });
+        
+//         const spells = await response.data;
+
+//         console.log(spells);
+    
+
+//         let message = `Total ${spells.length} spell(s) was find: \n`;
+//         spells.forEach((spell) => {
+//             message+=`Spell "${spell.spell}" ${spell.use}\n`;
+//         })
+
+//         alert(message);
+
+//     } catch (err) {
+//         console.log(err);
+//     }
+    
+// }
+
+searchButton.addEventListener('click', findSpell);
+document.getElementById("random").addEventListener('click', randomSpell);
+

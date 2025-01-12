@@ -18,20 +18,25 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </head>
     <body>
+        <nav>
+            <a href="/index.html">Home</a>
+        </nav>
         <div class="allCharacters">
             <div class="sort">
                 <p>Get all characters from one of the Hogwards House</p>
-                <button id="GryffindorCharac" onclick="houseStudents('gryffindor')">Gryffindor</button>
-                <button id="RavenclawCharac" onclick="houseStudents('ravenclaw')">Ravenclaw</button>
-                <button id="SlytherinCharac" onclick="houseStudents('slytherin')">Slytherin</button>
-                <button id="HufflepuffCharac" onclick="houseStudents('hufflepuff')">Hufflepuff</button>
+                <button id="GryffindorCharac" onclick="houseStudents('Gryffindor')">Gryffindor</button>
+                <button id="RavenclawCharac" onclick="houseStudents('Ravenclaw')">Ravenclaw</button>
+                <button id="SlytherinCharac" onclick="houseStudents('Slytherin')">Slytherin</button>
+                <button id="HufflepuffCharac" onclick="houseStudents('Hufflepuff')">Hufflepuff</button>
             </div>
+           <div class="search">
+                <input type="text"  id="searchCharacter" plaseholder="Enter name here">
+                <button id="getCharacBTN" >Search by Name</button>
+           </div>
             <h3 id="totalStd">Total students: </h3>
             <div class="chContainer">
                 
-                <ul class="listCharac">
-                    <li onclick="oneStudentInfo()">One</li>
-                </ul> 
+                <ul class="listCharac"></ul> 
                 <div class="oneCharacter"></div>
             </div>
             <div>
@@ -41,30 +46,18 @@
             <form action="">
 
 <!-- 
-                let student = {
-                    actor :  "Daniel Radcliffe",
-                    alive :  true,
-                    alternate_actors :  [],
-                    alternate_names :  (4) ['The Boy Who Lived', 'The Chosen One', 'Undesirable No. 1', 'Potty'],
-                    ancestry :  "half-blood",
-                    dateOfBirth :  "31-07-1980",
-                    eyeColour :  "green",
-                    gender :  "male",
-                    hairColour : "black",
-                    hogwartsStaff : false,
-                    hogwartsStudent :  true,
-                    house :  "Gryffindor",
-                    id :  "9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8",
-                    image :  "https://ik.imagekit.io/hpapi/harry.jpg",
-                    name :  "Harry Potter",
-                    patronus : "stag",
-                    species :  "human",
-                    wand :  {wood: 'holly', core: 'phoenix tail feather', length: 11},
-                    wizard :  true,
-                    yearOfBirth :  1980
-                    }
+            let student = {
+                birthdate :  "Jul 31, 1980",
+                children :  ['James Sirius Potter', 'Albus Severus Potter', 'Lily Luna Potter'],
+                fullName :  "Harry James Potter",
+                hogwartsHouse : "Gryffindor",
+                image : "https://raw.githubusercontent.com/fedeperin/potterapi/main/public/images/characters/harry_potter.png",
+                index: 0,
+                interpretedBy :  "Daniel Radcliffe",
+                nickname : "Harry",
+            }
                      -->
-                Name <input type="text" /> <br />
+                Full name <input type="text" /> <br />
                 Date of Birth <input type="text" /> <br />  
                 House <select name="house" id="">
                     <option value="Gryffindor">Gryffindor</option>

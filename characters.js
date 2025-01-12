@@ -14,14 +14,21 @@ function clearBio() {
     oneCharacter.innerHTML = "";
 }
 
-
-async function getStudentInfo() {
+async function getStudent() {
     try {
-        const response = await axios.get("https://hp-api.onrender.com/api/character/:id?id=9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8");
+        clearList();
+        clearBio();
+        const studentName = searchCharacter.value;
+        console.log(studentName);
+        const newResponse = await axios.get("https://potterapi-fedeperin.vercel.app/en/characters", {
+            params: { 
+                    search: studentName
+                }
+            });       
 
-        const std = await response.data;
-        console.log(std);   
-
+        const students = await newResponse.data;
+        console.log(students);        
+        listStudents(students);
 
     } catch(err) {
         console.log(err)
@@ -29,60 +36,56 @@ async function getStudentInfo() {
     
 }
 
-function oneStudentInfo() {
-    console.log('function is works');
+const searchCharacter = document.getElementById("searchCharacter");
+const getCharacter = document.getElementById("getCharacBTN");
+getCharacter.addEventListener("click", getStudent);
 
-//    getStudentInfo();
-    //id :  "9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8"
-    //<li class="container_li"><a href="https://hp-api.onrender.com/api/character/:id">Specific Character by ID</a></li>
+async function oneStudentInfo(studentID) {
+    console.log('function is starts');
+    console.log(studentID);
+    clearBio();
+
+    const response = await axios.get("https://potterapi-fedeperin.vercel.app/en/characters", {
+        params: { 
+            index: studentID 
+            }, 
+        });
+    const student = await response.data;
+    console.log(student);
 
     
-        let student = {
-        actor :  "Daniel Radcliffe",
-        alive :  true,
-        alternate_actors :  [],
-        alternate_names :  (4) ['The Boy Who Lived', 'The Chosen One', 'Undesirable No. 1', 'Potty'],
-        ancestry :  "half-blood",
-        dateOfBirth :  "31-07-1980",
-        eyeColour :  "green",
-        gender :  "male",
-        hairColour : "black",
-        hogwartsStaff : false,
-        hogwartsStudent :  true,
-        house :  "Gryffindor",
-        id :  "9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8",
-        image :  "https://ik.imagekit.io/hpapi/harry.jpg",
-        name :  "Harry Potter",
-        patronus : "stag",
-        species :  "human",
-        wand :  {wood: 'holly', core: 'phoenix tail feather', length: 11},
-        wizard :  true,
-        yearOfBirth :  1980
-        }
+    // student = {
+    //         birthdate :  "Jul 31, 1980",
+    //         children :  ['James Sirius Potter', 'Albus Severus Potter', 'Lily Luna Potter'],
+    //         fullName :  "Harry James Potter",
+    //         hogwartsHouse : "Gryffindor",
+    //         image : "https://raw.githubusercontent.com/fedeperin/potterapi/main/public/images/characters/harry_potter.png",
+    //         index: 0,
+    //         interpretedBy :  "Daniel Radcliffe",
+    //         nickname : "Harry",
+    // }
         
             
     oneCharacter.innerHTML=`
         <img src="${student.image}">
-        <h3>${student.name}</h3>
-        <p><strong>Date Of Birth: </strong>${student.dateOfBirth}</p>
-        <p><strong>House: </strong>${student.house}</p>
-        <p><strong>Species: </strong>${student.species}</p>
-        <p><strong>Alive: </strong>${student.alive}</p>
-        <p><strong>Gender: </strong>${student.gender}</p>
-        <p><strong>Actor: </strong>${student.actor}</p> 
-
-
-
-
+        <h3>${student.fullName}</h3>
+        <p><strong>Date Of Birth: </strong>${student.birthdate}</p>
+        <p><strong>House: </strong>${student.hogwartsHouse}</p>     
+        <p><strong>Actor: </strong>${student.interpretedBy}</p> 
     `;
 
 
 }
-function listStudents(students){
+
+function listStudents(array){
+    const students = array;
+    console.log(students);
+    
     students.forEach((student) => {
-        // console.log(student.name);
+        // console.log(student.fullName);
         const list=document.createElement("li");
-        list.textContent = student.name;
+        list.textContent = student.fullName;
+        list.setAttribute("onclick", `oneStudentInfo("${student.index}")`);
         listOfCharacters.appendChild(list);
         
     })
@@ -95,25 +98,11 @@ let total;
 
 async function loadAllStudents() {
     try {
-        const newResponse = await axios.get("https://hp-api.onrender.com/api/characters");
-
+        const newResponse = await axios.get("https://potterapi-fedeperin.vercel.app/en/characters");
         const students = await newResponse.data;
         console.log(students);   
         listStudents(students);
-        total = students.length;
-    
-        // students.forEach((student) => {
-        //     // console.log(student.name);
-        //     const list=document.createElement("li");
-        //     list.textContent = student.name;
-        //     listOfCharacters.appendChild(list);
-            
-        // })
-        
-        // totalStd.innerHTML+=students.length;
-        
-
-
+        total = students.length;   
     } catch (err) {
         console.log(err)
     }
@@ -121,7 +110,13 @@ async function loadAllStudents() {
 
 async function houseStudents(house) {
     try {
-        const newResponse = await axios.get("https://hp-api.onrender.com/api/characters/house/"+house);
+        clearBio();
+        console.log(house);
+        const newResponse = await axios.get("https://potterapi-fedeperin.vercel.app/en/characters", {
+            params: { 
+                    search: house 
+                }
+            });       
 
         const students = await newResponse.data;
         console.log(students);
