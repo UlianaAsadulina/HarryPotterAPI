@@ -15,8 +15,24 @@ function clearBio() {
 }
 
 
+async function getStudentInfo() {
+    try {
+        const response = await axios.get("https://hp-api.onrender.com/api/character/:id?id=9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8");
+
+        const std = await response.data;
+        console.log(std);   
+
+
+    } catch(err) {
+        console.log(err)
+    }
+    
+}
+
 function oneStudentInfo() {
     console.log('function is works');
+
+//    getStudentInfo();
     //id :  "9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8"
     //<li class="container_li"><a href="https://hp-api.onrender.com/api/character/:id">Specific Character by ID</a></li>
 
@@ -115,3 +131,52 @@ async function houseStudents(house) {
 }
 
 loadAllStudents();
+
+async function addCharacter () {
+    
+}
+
+document.querySelector('form').addEventListener('submit', async (evt) => {
+    evt.preventDefault();
+    try {
+      const form = evt.target;
+      const newsArticle = {
+        title: form[0].value,
+        date: form[1].value,
+        category: form[2].value,
+        content: form[3].value,
+        image: form[4].value,
+      };
+  
+      const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newsArticle),
+      });
+  
+      if (!res.ok) {
+        throw 'Bad Request';
+      }
+  
+      const data = await res.json();
+  
+      alertUser('Post Sucessfully Created!');
+    } catch (err) {
+      console.log(err);
+    }
+  });
+  
+  function alertUser(message) {
+    const alertBox = document.querySelector('#alert');
+    alertBox.textContent = message;
+  
+    setTimeout(() => {
+      alertBox.textContent = '';
+    }, 4000);
+  }
+
+fetch('https://jsonplaceholder.typicode.com/posts/1')
+  .then((response) => response.json())
+  .then((json) => console.log(json));

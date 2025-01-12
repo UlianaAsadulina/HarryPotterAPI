@@ -182,3 +182,17 @@ async function getHouseInfo(houseID) {
 
 
 }
+
+async function randomSpell() {
+    try {
+        const response = await axiosInstance.get("/spells/random");
+
+        const spell = await response.data;
+        console.log(spell);
+        alert(`Spell "${spell.spell}"\n${spell.use}`);
+
+    } catch (err) {
+        console.log(err);
+    }
+    
+}
