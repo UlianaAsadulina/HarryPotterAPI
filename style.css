@@ -107,30 +107,18 @@ body{
     display: flex;
 }
 
-.flags {
-    background-image: url('/img/Hogwarts-house.jpg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 400px;
-    width: 60%;
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-}
 
-.house {
-    padding: 10px;
-    width: 25%;
-}
 
 .playSort {
     height: 400px;
     width: 40%;
-    background-image: url('/img/sorting-hat.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    display: flex;
-    align-items: flex-end;
     justify-content: center;
+   
 
+}
+
+.students {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
 }

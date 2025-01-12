@@ -1,0 +1,23 @@
+.chContainer {
+    display: flex;
+    border: solid black;
+}
+
+.listCharac {
+    width: 50%;
+}
+
+.listCharac li {
+    text-decoration: underline;
+}
+
+.listCharac li:hover {
+    font-size: 16pt;
+    transition: 300ms;
+    cursor: pointer;
+}
+
+.listCharac li::after {
+    color: red;
+    
+}

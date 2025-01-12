@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="characters.css">
+        <!-- Font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+
+        <!-- Axios -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div class="allCharacters">
+            <div class="sort">
+                <p>Get all characters from one of the Hogwards House</p>
+                <button id="GryffindorCharac" onclick="houseStudents('gryffindor')">Gryffindor</button>
+                <button id="RavenclawCharac" onclick="houseStudents('ravenclaw')">Ravenclaw</button>
+                <button id="SlytherinCharac" onclick="houseStudents('slytherin')">Slytherin</button>
+                <button id="HufflepuffCharac" onclick="houseStudents('hufflepuff')">Hufflepuff</button>
+            </div>
+            <h3 id="totalStd">Total students: </h3>
+            <div class="chContainer">
+                
+                <ul class="listCharac">
+                    <li onclick="oneStudentInfo()">One</li>
+                </ul> 
+                <div class="oneCharacter"></div>
+            </div>
+           
+        </div>
+        
+        <script src="characters.js" async defer></script>
+    </body>
+</html>

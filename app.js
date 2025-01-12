@@ -24,10 +24,11 @@ async function initialLoad() {
 
         //"routes": ["/en/books", "/en/characters", "/en/houses", "/en/spells"],
         
-        const response = await axiosInstance.get("/spells");
+        const response = await axiosInstance.get("/spells", { params: { search: "Levi" } });
 
         const spells = await response.data;
         console.log(spells);
+        
 
         /**Spell Object
          * index :  3
@@ -71,10 +72,7 @@ async function initialLoad() {
 
         /** One book object
          * cover : "https://raw.githubusercontent.com/fedeperin/potterapi/main/public/images/covers/1.png"
-         * description :  "On his birthday, Harry Potter discovers that he is the son of two well-known wizards, from whom he has inherited magical powers. 
-         *                  He must attend a famous school of magic and sorcery, where he establishes a friendship with two young men who will become his 
-         *                  companions on his adventure. During his first year at Hogwarts, he discovers that a malevolent and powerful wizard named Voldemort 
-         *                  is in search of a philosopher's stone that prolongs the life of its owner."
+         * description :  "On his birthday.."
          * index :  0
          * number :  1
          * originalTitle :  "Harry Potter and the Sorcerer's Stone"
@@ -105,3 +103,82 @@ async function initialLoad() {
 }
   
 initialLoad();
+
+const flag = document.querySelector(".flag");
+const houseInfo = document.querySelector(".houseInfo");
+
+async function houseStudents(house) {
+    try {
+        const newResponse = await axios.get("https://hp-api.onrender.com/api/characters/house/"+house);
+
+        const stds = await newResponse.data;
+        console.log(stds);
+
+        const studentsContainer = document.createElement("div");
+        studentsContainer.setAttribute("class", "students");
+        houseInfo.appendChild(studentsContainer);
+        
+        stds.forEach((std) => {
+            if (std.image.lenght != 0) { //If string is empty  a character has no photo
+                let student = document.createElement("img");
+                student.setAttribute("scr", std.image);
+                student.style.height = "150px";
+                studentsContainer.appendChild(student);
+            }
+            
+            let name = document.createElement("p");
+            name.textContent = std.name;
+            name.style.paddingRight = "15px";            
+            studentsContainer.appendChild(name);
+        })
+
+
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+async function getHouseInfo(houseID) {
+    try {
+        // Fetch data  from API
+
+        const response = await axiosInstance.get("/houses", { params: { index: houseID } });
+
+        const selectedHouse = await response.data;
+        // const houses = await response.data;
+        // console.log(houses);
+
+        /**One House Object
+         * animal : "Lion"
+         * colors :  (2) ['red', 'gold']
+         * emoji :  "🦁"
+         * founder : "Godric Gryffindor"
+         * house :  "Gryffindor"
+         * index :  0 
+         */
+
+        // const selectedHouse = houses.find((house) => house.index == houseID);
+        // console.log(selectedHouse);
+
+        houseInfo.innerHTML = `
+            <h2>${selectedHouse.house}</h2>            
+            <p><strong>Founder: </strong> ${selectedHouse.founder}</p>
+            <p><strong>Animal: </strong> ${selectedHouse.animal}  ${selectedHouse.emoji}</p>          
+            <p><strong>Colors: </strong> ${selectedHouse.colors.join()}</p>            
+            `;
+        const studentsBtn = document.createElement("button");
+        studentsBtn.textContent="ShowStudents";
+        let nameofHouse = selectedHouse.house.toLowerCase();
+        console.log(nameofHouse);
+        studentsBtn.setAttribute("onclick", `houseStudents("${nameofHouse}")` );
+        houseInfo.appendChild(studentsBtn);    
+
+        
+        
+
+    } catch (err) {
+        console.log(err);
+    }
+
+
+}

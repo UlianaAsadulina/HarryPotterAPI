@@ -23,7 +23,7 @@
                 <ul class="navLinks">
                     <li><a href="#">Home</a></li>
                     <li><a href="books.html">Books</a></li>
-                    <li><a href="#">Characters</a></li>
+                    <li><a href="characters.html">Characters</a></li>
                 </ul>
                 <img id="logo" src="https://www.harrypotter.com/assets/_next/static/images/logo-gold-600-7a7e89b6db1ffeaab025f2091d21b645.png" alt="Harry Potter Logo">   
                 <button class="invite">Invite Me</button>                 
@@ -36,19 +36,33 @@
             <button id="searchBtn">Find Spell</button>
 
             <div class="sortHat">
-                <div class="flags">
+                <img src="/img/Hogwarts-house.jpg" alt="">
+                <!-- <div class="flags">
                     <div class="house">Gryffindor</div>
                     <div class="house">Ravenclaw</div>
                     <div class="house">Slytherin</div>
                     <div class="house">Hufflepuff</div>   
-                </div>
+                </div> -->
                 
                 <div class="playSort">
+                    <img src="/img/sorting-hat.png" alt="">
                     <p>WHAT'S YOUR <br>HOGWARTS HOUSE?</p>
                     <button>GER SORTED NOW</button>
                 </div>
             </div>
             <div class="text">
+                <p>For information about Hogwards Houses click on the buttons below</p>
+                <div class="buttons">
+                    <button id="Gryffindor" onclick="getHouseInfo(0)">Gryffindor</button>
+                    <button id="Ravenclaw" onclick="getHouseInfo(2)">Ravenclaw</button>
+                    <button id="Slytherin" onclick="getHouseInfo(3)">Slytherin</button>
+                    <button id="Hufflepuff" onclick="getHouseInfo(1)">Hufflepuff</button>
+                </div>
+                <div class="houses">
+                    <div class="flag"></div>
+                    <div class="houseInfo"></div>
+                </div>
+
 
             </div>
 
