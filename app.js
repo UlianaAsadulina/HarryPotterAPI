@@ -14,7 +14,7 @@ const axiosInstance = axios.create({
     },
 });
 
-function sortHat() {
+export function sortHat() {
     const houseID = Math.floor(Math.random() * 4);
     switch(houseID) {
         case 0: {
@@ -153,7 +153,7 @@ const houseInfo = document.querySelector(".houseInfo");
 //     }
 // }
 
-async function getHouseInfo(houseID) {
+export async function getHouseInfo(houseID) {
     try {
         // Fetch data  from API
 
@@ -193,6 +193,10 @@ async function getHouseInfo(houseID) {
     }
 
 }
+
+// Attach the functions to the global `window` object
+window.getHouseInfo = getHouseInfo;
+window.sortHat = sortHat;
 
 // async function randomSpell() {
 //     try {
