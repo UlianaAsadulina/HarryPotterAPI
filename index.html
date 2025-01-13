@@ -37,8 +37,8 @@
             </div>
             <div id="forSpells">
                 <input type="text" id="inputSearch" placeholder="search...">
-                <button id="searchBtn" >Find Spell</button>
-                <button id="random"  >Get Random Spell</button>
+                <button id="searchBtn" onclick="findSpell()">Find Spell</button>
+                <button id="random" onclick="randomSpell()" >Get Random Spell</button>
             </div>
             <div class="sortHat">
                 <div class="houses">
@@ -68,6 +68,7 @@
         </div>        
         <!-- <script src="app.js" async defer></script> -->
         <script type="module" src="app.js" defer></script>
+        <script type="module" src="/modules/spells.mjs" defer></script>
                     
     </body>
 </html>

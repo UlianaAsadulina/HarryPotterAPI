@@ -1,18 +1,49 @@
 import { randomSpell, findSpell } from "./modules/spells.mjs";
 
 const forSearch = document.getElementById('inputSearch');
-// const searchButton = document.getElementById('searchBtn');
+
 const text = document.querySelector('.text');
 
 
-
-//export 
 const axiosInstance = axios.create({
     baseURL: "https://potterapi-fedeperin.vercel.app/en",
     headers: {
         'Content-Type': 'application/json',
     },
 });
+
+axiosInstance.interceptors.request.use(request => {
+    request.metadata = request.metadata || {};
+    request.metadata.startTime = new Date().getTime(); 
+  
+    //Set the body element's cursor style to "progress."
+    document.body.style.cursor = "progress";
+  
+    return request;
+  });
+  
+
+//Add axios interceptors to log the time between request and response to the console.
+  
+axiosInstance.interceptors.response.use( (response) => {
+        response.config.metadata.endTime = new Date().getTime();
+        response.config.metadata.durationInMS = response.config.metadata.endTime - response.config.metadata.startTime;
+  
+        console.log(`Request took ${response.config.metadata.durationInMS} milliseconds.`);
+  
+        //ISet the progress cursor style as default from the body element.
+        document.body.style.cursor = "auto";
+  
+        return response;
+    },
+    (error) => {
+        error.config.metadata.endTime = new Date().getTime();
+        error.config.metadata.durationInMS = error.config.metadata.endTime - error.config.metadata.startTime;
+  
+        console.log(`Request took ${error.config.metadata.durationInMS} milliseconds.`)
+        throw error;
+});
+  
 
 export function sortHat() {
     const houseID = Math.floor(Math.random() * 4);
@@ -38,92 +69,6 @@ export function sortHat() {
 
 }
 
-async function initialLoad() {
-    try {
-        // Fetch from API
-
-        //"routes": ["/en/books", "/en/characters", "/en/houses", "/en/spells"],
-        
-        // const response = await axiosInstance.get("/spells",
-        //               { params: { search: "Levi" } });
-
-        // const spells = await response.data;
-        // console.log(spells);
-        
-
-        /**Spell Object
-         * index :  3
-         * spell :  "Wingardium Leviosa/Locomotor"
-         * use :  "Levitates objects"
-         * 
-         */
-
-        // const houses = await response.data;
-        // console.log(houses);
-
-        /**One House Object
-         * animal : "Lion"
-         * colors :  (2) ['red', 'gold']
-         * emoji :  "🦁"
-         * founder : "Godric Gryffindor"
-         * house :  "Gryffindor"
-         * index :  0 
-         */
-
-
-
-        // const characters = await response.data; 
-        // console.log(characters);
-
-        /**One Character object
-         * birthdate : "Jul 31, 1980"
-         * children :  (3) ['James Sirius Potter', 'Albus Severus Potter', 'Lily Luna Potter']
-         * fullName : "Harry James Potter"
-         * hogwartsHouse :  "Gryffindor"
-         * image :  "https://raw.githubusercontent.com/fedeperin/potterapi/main/public/images/characters/harry_potter.png" 
-         * index :  0
-         * interpretedBy :  "Daniel Radcliffe"
-         * nickname :  "Harry" 
-         */
-    
-    
-        // const books = await response.data; 
-    
-        // console.log(books);
-
-        /** One book object
-         * cover : "https://raw.githubusercontent.com/fedeperin/potterapi/main/public/images/covers/1.png"
-         * description :  "On his birthday.."
-         * index :  0
-         * number :  1
-         * originalTitle :  "Harry Potter and the Sorcerer's Stone"
-         * pages :  223
-         * releaseDate :  "Jun 26, 1997"
-         * title :  "Harry Potter and the Sorcerer's Stone" 
-         */
-
-
-
-
-
-
-
-        /** 
-        
-        books.forEach((book) => {
-            let oneBook = document.createElement("p");
-            
-            oneBook.textContent = book.title; // Set the displayed text 
-            text.appendChild(oneBook); // Append the book in the text area
-        });*/
-  
-  
-    } catch (err) {
-        console.log(err);
-    }
-}
-  
-//initialLoad();
 
 const flag = document.querySelector(".flag");
 const houseInfo = document.querySelector(".houseInfo");
@@ -139,7 +84,7 @@ const houseInfo = document.querySelector(".houseInfo");
 //         studentsContainer.setAttribute("class", "students");
 //         houseInfo.appendChild(studentsContainer);
         
-//         stds.forEach((std) => {         
+//         stds.forEach((std) => {        
             
 //             let name = document.createElement("p");
 //             name.textContent = std.name;
@@ -160,20 +105,6 @@ export async function getHouseInfo(houseID) {
         const response = await axiosInstance.get("/houses", { params: { index: houseID } });
 
         const selectedHouse = await response.data;
-        // const houses = await response.data;
-        // console.log(houses);
-
-        /**One House Object
-         * animal : "Lion"
-         * colors :  (2) ['red', 'gold']
-         * emoji :  "🦁"
-         * founder : "Godric Gryffindor"
-         * house :  "Gryffindor"
-         * index :  0 
-         */
-
-        // const selectedHouse = houses.find((house) => house.index == houseID);
-        // console.log(selectedHouse);
 
         houseInfo.innerHTML = `
             <h2>${selectedHouse.house}</h2>            
@@ -198,48 +129,3 @@ export async function getHouseInfo(houseID) {
 window.getHouseInfo = getHouseInfo;
 window.sortHat = sortHat;
 
-// async function randomSpell() {
-//     try {
-//         const response = await axiosInstance.get("/spells/random");
-
-//         const spell = await response.data;
-//         console.log(spell);
-//         alert(`Spell "${spell.spell}"\n${spell.use}`);
-
-//     } catch (err) {
-//         console.log(err);
-//     }
-    
-// }
-
-// async function findSpell() {
-//     try {
-//         const search = document.getElementById("inputSearch").value;
-//         console.log(search);
-
-//         const response = await axiosInstance.get("/spells", { 
-//             params: { 
-//                 search: search 
-//             } 
-//         });
-        
-//         const spells = await response.data;
-
-//         console.log(spells);
-    
-//         let message = `Total ${spells.length} spell(s) was find: \n`;
-//         spells.forEach((spell) => {
-//             message+=`Spell "${spell.spell}" ${spell.use}\n`;
-//         })
-
-//         alert(message);
-
-//     } catch (err) {
-//         console.log(err);
-//     }
-    
-// }
-
-
-document.getElementById("searchBtn").addEventListener("click", findSpell);
-document.getElementById("random").addEventListener("click", randomSpell);

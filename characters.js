@@ -3,10 +3,35 @@ const totalStd = document.getElementById("totalStd");
 const oneCharacter = document.querySelector(".oneCharacter");
 const addForm = document.getElementById("addForm");
 
+axios.interceptors.request.use(request => {
+    //Set the body element's cursor style to "progress."
+    document.body.style.cursor = "progress";  
+    return request;
+});
+
+axios.interceptors.response.use( (response) => {  
+
+    //Set the progress cursor style as default from the body element.
+    document.body.style.cursor = "auto";
+
+    return response;
+},
+(error) => {
+    throw error;
+});
+
+
+// Log size of returned data of the request
+function updateProgress (progressEvent) {
+    // console.log(progressEvent);    
+    console.log(`Loaded ${progressEvent.loaded}bites`);
+
+}
+
 function clearList () {
     totalStd.textContent = "Total students: ";
     const total = listOfCharacters.childElementCount;
-    console.log(total);
+    // console.log(total);
     for (let i=0; i<total; i++) {
             listOfCharacters.removeChild(listOfCharacters.firstChild);
     }
@@ -42,9 +67,7 @@ const searchCharacter = document.getElementById("searchCharacter");
 const getCharacter = document.getElementById("getCharacBTN");
 getCharacter.addEventListener("click", getStudent);
 
-async function oneStudentInfo(studentID) {
-    console.log('function is starts');
-    console.log(studentID);
+async function oneStudentInfo(studentID) {   
     clearBio();
 
     const response = await axios.get("https://potterapi-fedeperin.vercel.app/en/characters", {
@@ -53,9 +76,7 @@ async function oneStudentInfo(studentID) {
             }, 
         });
     const student = await response.data;
-    console.log(student);
-
-    
+        
     // student = {
     //         birthdate :  "Jul 31, 1980",
     //         children :  ['James Sirius Potter', 'Albus Severus Potter', 'Lily Luna Potter'],
@@ -65,8 +86,7 @@ async function oneStudentInfo(studentID) {
     //         index: 0,
     //         interpretedBy :  "Daniel Radcliffe",
     //         nickname : "Harry",
-    // }
-        
+    // }        
             
     oneCharacter.innerHTML=`
         <img src="${student.image}">
@@ -82,11 +102,11 @@ async function oneStudentInfo(studentID) {
 function listStudents(array){
 
     const students = array;
-    console.log(students);
+    //console.log(students);
     clearList();
     
     students.forEach((student) => {
-        // console.log(student.fullName);
+        
         const list=document.createElement("li");
         list.textContent = student.fullName;
         list.setAttribute("onclick", `oneStudentInfo("${student.index}")`);
@@ -102,9 +122,11 @@ let total;
 
 async function loadAllStudents() {
     try {
-        const newResponse = await axios.get("https://potterapi-fedeperin.vercel.app/en/characters");
+        const newResponse = await axios.get("https://potterapi-fedeperin.vercel.app/en/characters", {
+            onDownloadProgress: updateProgress, // Attach the progress function
+        });
         const students = await newResponse.data;
-        console.log(students);   
+        // console.log(students);   
         listStudents(students);
         total = students.length;   
     } catch (err) {
