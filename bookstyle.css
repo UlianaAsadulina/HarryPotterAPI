@@ -4,6 +4,35 @@ body {
     text-align: center;
 }
 
+
+a{
+    position: relative;
+    font-size: 17px;
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    height: 60px;
+}
+
+a::before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background-color: #FFF;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+a::before{
+    opacity: 1;
+}
+
 .booksContainer {
     display: flex;
     flex-wrap: wrap;

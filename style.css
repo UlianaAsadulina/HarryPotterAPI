@@ -200,6 +200,11 @@ button {
 
 }
 
+.textAbout {
+    padding-bottom: 50px;
+    font-size: 16pt;;
+}
+
 /* .houses {
     display: flex;
 } */

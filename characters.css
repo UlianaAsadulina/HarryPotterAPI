@@ -1,3 +1,56 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: "Rye", serif;
+}
+
+
+a{
+    position: relative;
+    font-size: 17px;
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    height: 60px;
+}
+
+a::before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background-color: #FFF;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+a::before{
+    opacity: 1;
+}
+
+#searchCharacter {
+    height: 30px;
+    width: 500px;
+
+}
+
+#getCharacBTN {
+    height: 40px;
+    width: 200px;
+    margin: 30px;
+    padding: 10px;
+    background-color: rgb(40, 40, 128);
+    color: white;
+    
+    
+
+}
+
 .chContainer {
     display: flex;
     border: solid black;
@@ -24,10 +77,26 @@
 
 .addForm {
     justify-content: center;
-    margin: 20px 10px 20px 10px;
+    margin: 20px 10px 20px 20px;
     box-sizing: border-box;
+    padding-left: 30px;
 }
 
 input, select {
     margin: 5px;
+}
+
+input[type=submit] {
+    height: 60px;
+    width: 200px;
+    margin: 30px;
+    padding: 10px;
+    background-color: rgb(40, 40, 128);
+    color: white;
+    text-shadow: 1px 1px 2px white, 0 0 1em blue;
+    box-shadow: rgb(215, 199, 87); 
+    font-family: "Rye", serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 12pt;
 }
