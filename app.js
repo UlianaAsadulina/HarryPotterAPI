@@ -82,7 +82,7 @@ function getFlag(houseID) {
         }
 
     const flagImg = document.createElement("img");
-    
+
     switch(houseID) {
       
         case 0: { //your House is Gryffindor
@@ -110,30 +110,36 @@ function getFlag(houseID) {
 
 }
 
-// async function houseStudents(house) {
-//     try {
-//         const newResponse = await axios.get("https://hp-api.onrender.com/api/characters/house/"+house);
+const studentsContainer = document.querySelector(".listCharacters");
 
-//         const stds = await newResponse.data;
-//         console.log(stds);
+export async function houseStudents(house) {
+    try {
+        const newResponse = await axios.get("https://hp-api.onrender.com/api/characters/house/"+house);
 
-//         const studentsContainer = document.createElement("div");
-//         studentsContainer.setAttribute("class", "students");
-//         houseInfo.appendChild(studentsContainer);
+        const stds = await newResponse.data;
+        console.log(stds);
+
+        const studentsContainer = document.createElement("div");
+        studentsContainer.setAttribute("class", "students");
+        houseInfo.appendChild(studentsContainer);
         
-//         stds.forEach((std) => {        
+        stds.forEach((std) => {        
             
-//             let name = document.createElement("p");
-//             name.textContent = std.name;
-//             name.style.paddingRight = "15px";            
-//             studentsContainer.appendChild(name);
-//         })
+            let name = document.createElement("p");
+            name.textContent = std.name;
+                    
+            studentsContainer.appendChild(name);
+
+        })
+            let note = document.createElement("h3") ;
+            note.textContent = "For more information about each Character go to the Character page on top of this page";
+            studentsContainer.appendChild(note);
 
 
-//     } catch (err) {
-//         console.log(err)
-//     }
-// }
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 export async function getHouseInfo(houseID) {
     try {
@@ -151,12 +157,14 @@ export async function getHouseInfo(houseID) {
             `;
 
         getFlag(houseID)    ;
-        // const studentsBtn = document.createElement("button");
-        // studentsBtn.textContent="ShowStudents";
-        // let nameofHouse = selectedHouse.house.toLowerCase();
-        // console.log(nameofHouse);
-        // studentsBtn.setAttribute("onclick", `houseStudents("${nameofHouse}")` );
-        // houseInfo.appendChild(studentsBtn);    
+
+
+        const studentsBtn = document.createElement("button");
+        studentsBtn.textContent="ShowStudents";
+        let nameofHouse = selectedHouse.house.toLowerCase();
+        console.log(nameofHouse);
+        studentsBtn.setAttribute("onclick", `houseStudents("${nameofHouse}")` );
+        houseInfo.appendChild(studentsBtn);    
 
     } catch (err) {
         console.log(err);
@@ -167,4 +175,5 @@ export async function getHouseInfo(houseID) {
 // Attach the functions to the global `window` object
 window.getHouseInfo = getHouseInfo;
 window.sortHat = sortHat;
+window.houseStudents = houseStudents;
 
