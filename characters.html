@@ -22,61 +22,45 @@
             <a href="/index.html">Home</a>
         </nav>
         <div class="allCharacters">
+            <!-- 
             <div class="sort">
                 <p>Get all characters from one of the Hogwards House</p>
-                <button id="GryffindorCharac" onclick="houseStudents('Gryffindor')">Gryffindor</button>
-                <button id="RavenclawCharac" onclick="houseStudents('Ravenclaw')">Ravenclaw</button>
-                <button id="SlytherinCharac" onclick="houseStudents('Slytherin')">Slytherin</button>
-                <button id="HufflepuffCharac" onclick="houseStudents('Hufflepuff')">Hufflepuff</button>
+                <button id="GryffindorBtn" onclick="houseStudents('Gryffindor')">Gryffindor</button>
+                <button id="RavenclawBtn" onclick="houseStudents('Ravenclaw')">Ravenclaw</button>
+                <button id="SlytherinBtn" onclick="houseStudents('Slytherin')">Slytherin</button>
+                <button id="HufflepuffBtn" onclick="houseStudents('Hufflepuff')">Hufflepuff</button>
+            </div> 
+            -->
+
+            <div class="search">
+                    <input type="text"  id="searchCharacter" plaseholder="Enter name here">
+                    <button id="getCharacBTN" >Search by Name</button>
             </div>
-           <div class="search">
-                <input type="text"  id="searchCharacter" plaseholder="Enter name here">
-                <button id="getCharacBTN" >Search by Name</button>
-           </div>
+
             <h3 id="totalStd">Total students: </h3>
+
             <div class="chContainer">
-                
-                <ul class="listCharac"></ul> 
-                <div class="oneCharacter"></div>
+                    <ul class="listCharac"></ul> 
+                    <div class="oneCharacter"></div>
             </div>
+            
             <div>
-                <h3>Add missing Character</h3>
+                <h3>Add missing Character</h3>          
+                <form id="addForm">
+                    Full name <input type="text" />  
+                    Nickname <input type="text" /> <br />
+                    Date of Birth <input type="text" /> <br />  
+                    House <select name="house" id="">
+                        <option value="Gryffindor">Gryffindor</option>
+                        <option value="Ravenclaw">Ravenclaw</option>
+                        <option value="Slytherin">Slytherin</option>
+                        <option value="Hufflepuff">Hufflepuff</option>
+                    </select> <br>                       
+                    Photo <input type="text" /> Actor <input type="text" /> <br />
+                    <input type="submit" value="Add Character" />
+                </form>
+                <div id="alert"></div>
             </div>
-
-            <form action="">
-
-<!-- 
-            let student = {
-                birthdate :  "Jul 31, 1980",
-                children :  ['James Sirius Potter', 'Albus Severus Potter', 'Lily Luna Potter'],
-                fullName :  "Harry James Potter",
-                hogwartsHouse : "Gryffindor",
-                image : "https://raw.githubusercontent.com/fedeperin/potterapi/main/public/images/characters/harry_potter.png",
-                index: 0,
-                interpretedBy :  "Daniel Radcliffe",
-                nickname : "Harry",
-            }
-                     -->
-                Full name <input type="text" /> <br />
-                Date of Birth <input type="text" /> <br />  
-                House <select name="house" id="">
-                    <option value="Gryffindor">Gryffindor</option>
-                    <option value="Ravenclaw">Ravenclaw</option>
-                    <option value="Slytherin">Slytherin</option>
-                    <option value="Hufflepuff">Hufflepuff</option>
-                </select> <br>       
-                Species <input type="text" /> <br />
-                Gender <input type="text" /> <br />
-                Is alive <select name="alive" id="">
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                </select> <br>
-                Photo <input type="text" /> <br />
-                Actor <input type="text" /> <br />
-                <input type="submit" value="Add Character" />
-            </form>
-            <div id="alert"></div>
-           
         </div>
         
         <script src="characters.js" async defer></script>

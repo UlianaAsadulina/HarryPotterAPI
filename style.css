@@ -90,21 +90,104 @@ body{
     font-family: "Rye", serif;
 }
 
+#forSpells {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+
+button {
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(40, 40, 128);
+    color: white;
+    text-shadow: 1px 1px 2px white, 0 0 1em blue;
+    box-shadow: rgb(215, 199, 87); 
+    font-family: "Rye", serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 12pt;
+}
+
+#Gryffindor {
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(107, 4, 5);
+    color: rgb(246, 250, 3); 
+    text-shadow: 1px 1px 2px white, 0 0 1em rgb(255, 94, 0);
+    box-shadow: rgb(215, 199, 87); 
+    font-family: "Rye", serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 15pt;
+    width: 20%;
+
+}
+
+
+#Ravenclaw {
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(19, 96, 121);
+    color: rgb(250, 221, 3); 
+    text-shadow: 1px 1px 2px white, 0 0 1em rgb(255, 251, 0);
+    box-shadow: rgb(215, 199, 87); 
+    font-family: "Rye", serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 15pt;
+    width: 20%;
+}
+
+#Slytherin {
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(29, 80, 21);
+    color: grey;
+    text-shadow: 1px 1px 2px white, 0 0 1em rgb(219, 233, 215);
+    box-shadow: rgb(191, 216, 183); 
+    font-family: "Rye", serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 15pt;
+    width: 20%;
+}
+
+#Hufflepuff {
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(192, 142, 19);
+    color: black;
+    text-shadow: 1px 1px 2px white, 0 0 1em rgba(255, 196, 0, 0.952);
+    box-shadow: rgb(215, 199, 87); 
+    font-family: "Rye", serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 15pt;
+    width: 20%;
+}
 
 
 
 
 
 #inputSearch {
-    border: 1px solid red;
+    border: 1px solid rgb(5, 6, 105);
     border-radius: 5px;
-    width: 50%;
-    height: 20px;
+    margin-left: 20px;
+    margin-right: auto;
+    width: 70%;
+    height: 35px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    box-shadow: rgb(215, 199, 87); 
 }
 
 .sortHat {
     display: flex;
+    flex-wrap: wrap;
 }
 
 
@@ -113,16 +196,16 @@ body{
     height: 400px;
     width: 40%;
     justify-content: center;
-   
+    text-align: center;
 
 }
 
-.houses {
+/* .houses {
     display: flex;
-}
+} */
 
-.students {
+/* .students {
     display: flex;
     flex-wrap: wrap;
     padding: 5px;
-}
+} */

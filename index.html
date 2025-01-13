@@ -18,12 +18,8 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
         <!-- Our Scripts -->
-        <script defer type="module" src="app.js"></script>
-        <script defer type="module" src="spells.js"></script>
-        <script defer type="module" src="book.js"></script>
-        <script defer type="module" src="characters.js"></script>
-
-
+        <!-- <script defer type="module" src="book.js"></script> -->
+        <!-- <script defer type="module" src="characters.js"></script> -->
     </head>
     <body>
         <div class="mainContainer">
@@ -40,44 +36,40 @@
             <div class="banner">
                 <h1 id="slogan" >Explore Wizards' World</h1>
             </div>
-            <input type="text" id="inputSearch" placeholder="search...">
-            <button id="searchBtn" >Find Spell</button>
-            <button id="random" >Get Random Spell</button>
-
+            <div id="forSpells">
+                <input type="text" id="inputSearch" placeholder="search...">
+                <button id="searchBtn" >Find Spell</button>
+                <button id="random"  >Get Random Spell</button>
+            </div>
             <div class="sortHat">
-                <img src="/img/Hogwarts-house.jpg" alt="">
-                <!-- <div class="flags">
-                    <div class="house">Gryffindor</div>
-                    <div class="house">Ravenclaw</div>
-                    <div class="house">Slytherin</div>
-                    <div class="house">Hufflepuff</div>   
-                </div> -->
-                
+                <div class="houses">
+                    <img src="/img/Hogwarts-house.jpg" alt="">
+                    <h1>For information about Hogwards Houses click on the buttons below</h1>
+                    <div class="buttons">
+                        <button id="Gryffindor" onclick="getHouseInfo(0)">Gryffindor</button>
+                        <button id="Ravenclaw" onclick="getHouseInfo(2)">Ravenclaw</button>
+                        <button id="Slytherin" onclick="getHouseInfo(3)">Slytherin</button>
+                        <button id="Hufflepuff" onclick="getHouseInfo(1)">Hufflepuff</button>
+                    </div>
+                </div>
                 <div class="playSort">
-                    <img src="/img/sorting-hat.png" alt="">
+                    <img src="/img/sorting-hat.png" width="80%">
                     <p>WHAT'S YOUR <br>HOGWARTS HOUSE?</p>
-                    <button>GER SORTED NOW</button>
+                    <button id="sortHat" onclick="sortHat()">GET SORTED NOW</button>
                 </div>
             </div>
-            <div class="text">
-                <p>For information about Hogwards Houses click on the buttons below</p>
-                <div class="buttons">
-                    <button id="Gryffindor" onclick="getHouseInfo(0)">Gryffindor</button>
-                    <button id="Ravenclaw" onclick="getHouseInfo(2)">Ravenclaw</button>
-                    <button id="Slytherin" onclick="getHouseInfo(3)">Slytherin</button>
-                    <button id="Hufflepuff" onclick="getHouseInfo(1)">Hufflepuff</button>
-                </div>
-                <div class="houses">
+            <div class="textAbout">              
+                
                     <div class="houseInfo"></div>
                     <div class="flag"></div>
                     <div class="listCharacters"></div>
-
-                </div>
-
-
+                
             </div>
 
         </div>        
         <script src="app.js" async defer></script>
+        <script type="module" src="app.js"></script>            
     </body>
 </html>
+
+

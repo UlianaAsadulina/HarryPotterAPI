@@ -1,10 +1,17 @@
-import {axiosInstance} from "./app.js";
+// import { axiosInstance } from "./app.js";
 
-console.log(axiosInstance);
+const axiosInstance = axios.create({
+    baseURL: "https://potterapi-fedeperin.vercel.app/en",
+    headers: {
+        'Content-Type': 'application/json',
+    },
+});
 
 export async function randomSpell() {
     try {
-        const response = await axiosInstance.get("/spells/random");
+
+       
+        const response = await axiosInstance.get("spells/random");
 
         const spell = await response.data;
         console.log(spell);
@@ -21,7 +28,7 @@ export async function findSpell() {
         const search = document.getElementById("inputSearch").value;
         console.log(search);
 
-        const response = await axiosInstance.get("/spells", { 
+        const response = await axiosInstance.get("spells", { 
             params: { 
                 search: search 
             } 

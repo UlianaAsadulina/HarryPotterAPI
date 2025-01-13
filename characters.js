@@ -1,11 +1,13 @@
 const listOfCharacters = document.querySelector(".listCharac");
 const totalStd = document.getElementById("totalStd");
 const oneCharacter = document.querySelector(".oneCharacter");
+const addForm = document.getElementById("addForm");
 
 function clearList () {
     totalStd.textContent = "Total students: ";
     const total = listOfCharacters.childElementCount;
-    for (let i=0; i<listOfCharacters.childElementCount; i++) {
+    console.log(total);
+    for (let i=0; i<total; i++) {
             listOfCharacters.removeChild(listOfCharacters.firstChild);
     }
 }
@@ -78,8 +80,10 @@ async function oneStudentInfo(studentID) {
 }
 
 function listStudents(array){
+
     const students = array;
     console.log(students);
+    clearList();
     
     students.forEach((student) => {
         // console.log(student.fullName);
@@ -130,52 +134,35 @@ async function houseStudents(house) {
 
 loadAllStudents();
 
-const form = document.querySelector("form");
+
 
 async function addCharacter (event) {
     event.preventDefault();
     try {
         const form = event.target;
         const newsCharacter = {
-            // 0 Name <input type="text" /> <br />
-            // 1 Date of Birth <input type="text" /> <br />  
-            // 2 House <select name="house" id="">
-            //     <option value="Gryffindor">Gryffindor</option>
-            //     <option value="Ravenclaw">Ravenclaw</option>
-            //     <option value="Slytherin">Slytherin</option>
-            //     <option value="Hufflepuff">Hufflepuff</option>
-            // </select> <br>       
-            // 3 Species <input type="text" /> <br />
-            // 4 Gender <input type="text" /> <br />
-            // 5 Is alive <select name="alive" id="">
-            //     <option value="true">Yes</option>
-            //     <option value="false">No</option>
-            // </select> <br>
-            // 6 Photo <input type="text" /> <br />
-            // 7 Actor <input type="text" /> <br />
+                    // 0 Full name <input type="text" />  
+                    // 1 Nickname <input type="text" /> <br />
+                    // 2 Date of Birth <input type="text" /> <br />  
+                    // 3 House <select name="house" id="">
+                    //     <option value="Gryffindor">Gryffindor</option>
+                    //     <option value="Ravenclaw">Ravenclaw</option>
+                    //     <option value="Slytherin">Slytherin</option>
+                    //     <option value="Hufflepuff">Hufflepuff</option>
+                    // </select> <br>                       
+                    // 4 Photo <input type="text" /> 
+                    // 5 Actor <input type="text" /> <br />                   
 
-                actor :  form[7].value,
-                alive :  form[5].value,
-                // alternate_actors :  [],
-                // alternate_names :  (4) ['The Boy Who Lived', 'The Chosen One', 'Undesirable No. 1', 'Potty'],
-                // ancestry :  "half-blood",
-                dateOfBirth :  form[1].value,
-                // eyeColour :  "green",
-                gender :  form[4].value,
-                // hairColour : "black",
-                // hogwartsStaff : false,
-                // hogwartsStudent :  true,
-                house :  form[2].value,
-                id :  ++total,
-                image :  form[6].value,
-                name :  form[0].value,
-                // patronus : "stag",
-                species :  form[3].value,
-                // wand :  {wood: 'holly', core: 'phoenix tail feather', length: 11},
-                // wizard :  true,
-                // yearOfBirth :  1980
-            
-            };
+            birthdate :  form[2].value,
+            // children :  ['James Sirius Potter', 'Albus Severus Potter', 'Lily Luna Potter'],
+            fullName :  form[0].value,
+            hogwartsHouse : form[3].value,
+            image : form[4].value,
+            index: ++total,
+            interpretedBy :  form[5].value,
+            nickname : form[1].value,
+    
+        };
     
         const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
             method: 'POST',
@@ -202,8 +189,9 @@ function alertUser(message) {
     alertBox.textContent = message;  
     setTimeout(() => {
         alertBox.textContent = '';
+        addForm.reset();
     }, 4000);
     
 }
 
-form.addEventListener("submit", addCharacter);
+addForm.addEventListener("submit", addCharacter);

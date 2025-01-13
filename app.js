@@ -1,20 +1,42 @@
-import { findSpell, randomSpell } from './spells.js';
+import { randomSpell, findSpell } from "./modules/spells.mjs";
 
 const forSearch = document.getElementById('inputSearch');
-const searchButton = document.getElementById('searchBtn');
+// const searchButton = document.getElementById('searchBtn');
 const text = document.querySelector('.text');
 
 
 
-export const axiosInstance = axios.create({
+//export 
+const axiosInstance = axios.create({
     baseURL: "https://potterapi-fedeperin.vercel.app/en",
     headers: {
         'Content-Type': 'application/json',
     },
 });
 
-// axios.defaults.baseURL = 'https://potterapi-fedeperin.vercel.app/en';
-// axios.defaults.headers.common['Content-Type'] = 'application/json';
+function sortHat() {
+    const houseID = Math.floor(Math.random() * 4);
+    switch(houseID) {
+        case 0: {
+            alert('SortHat says your House is Gryffindor');
+            break;
+        };
+        case 1: {
+            alert('SortHat says your House is Hufflepuff');
+            break;
+        };
+        case 2:{
+            alert('SortHat says your House is Ravenclaw');
+            break;
+        };
+        case 3:{
+            alert('SortHat says your House is Slytherin');
+            break;
+        };
+
+    }   
+
+}
 
 async function initialLoad() {
     try {
@@ -22,7 +44,8 @@ async function initialLoad() {
 
         //"routes": ["/en/books", "/en/characters", "/en/houses", "/en/spells"],
         
-        // const response = await axiosInstance.get("/spells", { params: { search: "Levi" } });
+        // const response = await axiosInstance.get("/spells",
+        //               { params: { search: "Levi" } });
 
         // const spells = await response.data;
         // console.log(spells);
@@ -105,36 +128,30 @@ async function initialLoad() {
 const flag = document.querySelector(".flag");
 const houseInfo = document.querySelector(".houseInfo");
 
-async function houseStudents(house) {
-    try {
-        const newResponse = await axios.get("https://hp-api.onrender.com/api/characters/house/"+house);
+// async function houseStudents(house) {
+//     try {
+//         const newResponse = await axios.get("https://hp-api.onrender.com/api/characters/house/"+house);
 
-        const stds = await newResponse.data;
-        console.log(stds);
+//         const stds = await newResponse.data;
+//         console.log(stds);
 
-        const studentsContainer = document.createElement("div");
-        studentsContainer.setAttribute("class", "students");
-        houseInfo.appendChild(studentsContainer);
+//         const studentsContainer = document.createElement("div");
+//         studentsContainer.setAttribute("class", "students");
+//         houseInfo.appendChild(studentsContainer);
         
-        stds.forEach((std) => {
-            if (std.image.lenght != 0) { //If string is empty  a character has no photo
-                let student = document.createElement("img");
-                student.setAttribute("scr", std.image);
-                student.style.height = "150px";
-                studentsContainer.appendChild(student);
-            }
+//         stds.forEach((std) => {         
             
-            let name = document.createElement("p");
-            name.textContent = std.name;
-            name.style.paddingRight = "15px";            
-            studentsContainer.appendChild(name);
-        })
+//             let name = document.createElement("p");
+//             name.textContent = std.name;
+//             name.style.paddingRight = "15px";            
+//             studentsContainer.appendChild(name);
+//         })
 
 
-    } catch (err) {
-        console.log(err)
-    }
-}
+//     } catch (err) {
+//         console.log(err)
+//     }
+// }
 
 async function getHouseInfo(houseID) {
     try {
@@ -164,20 +181,16 @@ async function getHouseInfo(houseID) {
             <p><strong>Animal: </strong> ${selectedHouse.animal}  ${selectedHouse.emoji}</p>          
             <p><strong>Colors: </strong> ${selectedHouse.colors.join()}</p>            
             `;
-        const studentsBtn = document.createElement("button");
-        studentsBtn.textContent="ShowStudents";
-        let nameofHouse = selectedHouse.house.toLowerCase();
-        console.log(nameofHouse);
-        studentsBtn.setAttribute("onclick", `houseStudents("${nameofHouse}")` );
-        houseInfo.appendChild(studentsBtn);    
-
-        
-        
+        // const studentsBtn = document.createElement("button");
+        // studentsBtn.textContent="ShowStudents";
+        // let nameofHouse = selectedHouse.house.toLowerCase();
+        // console.log(nameofHouse);
+        // studentsBtn.setAttribute("onclick", `houseStudents("${nameofHouse}")` );
+        // houseInfo.appendChild(studentsBtn);    
 
     } catch (err) {
         console.log(err);
     }
-
 
 }
 
@@ -210,7 +223,6 @@ async function getHouseInfo(houseID) {
 
 //         console.log(spells);
     
-
 //         let message = `Total ${spells.length} spell(s) was find: \n`;
 //         spells.forEach((spell) => {
 //             message+=`Spell "${spell.spell}" ${spell.use}\n`;
@@ -224,6 +236,6 @@ async function getHouseInfo(houseID) {
     
 // }
 
-searchButton.addEventListener('click', findSpell);
-document.getElementById("random").addEventListener('click', randomSpell);
 
+document.getElementById("searchBtn").addEventListener("click", findSpell);
+document.getElementById("random").addEventListener("click", randomSpell);
