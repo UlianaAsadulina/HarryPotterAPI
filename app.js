@@ -70,8 +70,45 @@ export function sortHat() {
 }
 
 
+
+
 const flag = document.querySelector(".flag");
 const houseInfo = document.querySelector(".houseInfo");
+
+function getFlag(houseID) {  
+    
+    if (flag.firstChild) {
+            flag.removeChild(flag.firstChild);
+        }
+
+    const flagImg = document.createElement("img");
+    
+    switch(houseID) {
+      
+        case 0: { //your House is Gryffindor
+            flagImg.setAttribute("src", "/img/gryffindor.jpg");
+            flag.appendChild(flagImg);
+            break;
+        };
+        case 1: { //"Hufflepuff"
+            flagImg.setAttribute("src", "/img/hufflepuff.jpg");
+            flag.appendChild(flagImg);
+            break;
+        };
+        case 2:{ //"Ravenclaw"
+            flagImg.setAttribute("src", "/img/ravenclaw.jpg");
+            flag.appendChild(flagImg);
+            break;
+        };
+        case 3:{ //"Slytherin" 
+            flagImg.setAttribute("src", "/img/slytherin.jpg");
+            flag.appendChild(flagImg);
+            break;
+        };
+
+    }   
+
+}
 
 // async function houseStudents(house) {
 //     try {
@@ -112,6 +149,8 @@ export async function getHouseInfo(houseID) {
             <p><strong>Animal: </strong> ${selectedHouse.animal}  ${selectedHouse.emoji}</p>          
             <p><strong>Colors: </strong> ${selectedHouse.colors.join()}</p>            
             `;
+
+        getFlag(houseID)    ;
         // const studentsBtn = document.createElement("button");
         // studentsBtn.textContent="ShowStudents";
         // let nameofHouse = selectedHouse.house.toLowerCase();

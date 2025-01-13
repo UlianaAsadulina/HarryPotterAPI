@@ -38,6 +38,8 @@ body{
     font-size: 17px;
     font-weight: 400;
     color: white;
+    font-family: "Rye", serif;
+    font-size: 12pt;
     text-decoration: none;
     padding: 10px;
 }
@@ -202,7 +204,13 @@ button {
 
 .textAbout {
     padding-bottom: 50px;
-    font-size: 16pt;;
+    font-size: 16pt;
+    display: flex;
+}
+
+.flag {
+    margin: 20px;
+    width: 35%;
 }
 
 /* .houses {
